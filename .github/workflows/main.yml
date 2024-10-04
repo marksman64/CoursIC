@@ -19,13 +19,22 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '18'  # Remplacez par la version souhaitée
+          node-version: '18.x'  # Remplacez par la version souhaitée
 
+      # Changez de répertoire vers 'react' avant d'installer les dépendances
       - name: Install dependencies
-        run: npm install  # Assurez-vous que le fichier package.json est présent
+        run: |
+          cd react
+          npm install
 
+      # Exécutez les tests si vous en avez
       - name: Run tests
-        run: npm run test  # Si vous avez des tests configurés
+        run: |
+          cd react
+          npm run test
 
+      # Construisez votre projet
       - name: Build project
-        run: npm run build  # Cela construira votre projet
+        run: |
+          cd react
+          npm run build
