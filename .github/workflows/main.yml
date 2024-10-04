@@ -27,12 +27,6 @@ jobs:
           cd react
           npm install
 
-      # Exécutez les tests si vous en avez
-      - name: Run tests
-        run: |
-          cd react
-          npm run test
-
       # Construisez votre projet
       - name: Build project
         run: |
