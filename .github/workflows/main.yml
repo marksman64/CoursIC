@@ -1,0 +1,42 @@
+name: CI - Vite React Project
+
+# Déclenchement du workflow lors de ces événements
+on:
+  push:
+    branches:
+      - main  # ou la branche de votre choix
+  pull_request:
+    branches:
+      - main
+
+# Définition des jobs (tâches) du workflow
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Checkout le code de la branche
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      # 2. Configuration de Node.js (ici, on utilise la version 18.x)
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.x'
+
+      # 3. Installation des dépendances npm
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Exécution des tests
+      - name: Run tests
+        run: npm run test
+
+      # 5. Build de l'application Vite (optionnel)
+      - name: Build project
+        run: npm run build
+
+      # 6. (Optionnel) Vérification du linting si configuré
+      - name: Run linter
+        run: npm run lint
